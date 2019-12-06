@@ -7,26 +7,37 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+
 using Stripe;
 
 namespace Amaya
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+          .SetBasePath(env.ContentRootPath)
+          .AddJsonFile("appsettings.json");
+            Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfigurationRoot Configuration { get; set; }
          
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AmayaContext>(opt =>
-                opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddCors();
+            services.AddMvc();
+            services.AddEntityFrameworkMySql()
+         .AddDbContext<AmayaContext>(options => options
+         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+              .AddEntityFrameworkStores<AmayaContext>()
+              .AddDefaultTokenProviders();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
