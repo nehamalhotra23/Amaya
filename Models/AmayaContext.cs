@@ -9,6 +9,9 @@ namespace Amaya
 
         }
         public DbSet<Customers> Customers { get; set; }
-    
+        public DbSet<StripeSettings> StripeSettings { get; set; }
+
+
+
     }
 }
