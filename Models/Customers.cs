@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Amaya
 {
     public class Customers
