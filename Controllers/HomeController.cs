@@ -28,7 +28,7 @@ namespace Amaya.Controllers
             var customer = customers.Create(new CustomerCreateOptions
             {
                 Email = stripeEmail,
-                SourceToken = stripeToken
+                // SourceToken = stripeToken
             });
 
             var charge = charges.Create(new ChargeCreateOptions
@@ -41,8 +41,6 @@ namespace Amaya.Controllers
 
             return View();
         }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

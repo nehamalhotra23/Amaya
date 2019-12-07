@@ -27,7 +27,7 @@ namespace Amaya
         }
 
         public IConfigurationRoot Configuration { get; set; }
-         
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();

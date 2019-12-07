@@ -7,7 +7,6 @@ namespace Amaya
 {
     public class SweetsContextFactory : IDesignTimeDbContextFactory<AmayaContext>
     {
-
         AmayaContext IDesignTimeDbContextFactory<AmayaContext>.CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
