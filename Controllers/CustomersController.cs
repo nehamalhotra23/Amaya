@@ -25,15 +25,6 @@ namespace Amaya.Controllers
         {
             return View();
         }
-
-
-        [HttpPost]
-    public ActionResult Create(Customers customers)
-    {
-        _db.Customers.Add(customers);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
-    }
     
 } 
 }       
